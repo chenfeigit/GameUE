@@ -7,6 +7,7 @@
 --
 
 require "UnLua"
+local BlueprintEnum = require "Core.Enum.BlueprintEnum"
 
 local UMG_Login_C = Class()
 
@@ -23,6 +24,7 @@ end
 function UMG_Login_C:OnClicked_Button_Login()
     print("Clicked")
     self:PlayAnimation(self.ButtonHidden)
+    UE4.UGameplayStatics.OpenLevel(self, BlueprintEnum.Level.MainLevel)
 end
 
 --function UMG_Login_C:Tick(MyGeometry, InDeltaTime)
