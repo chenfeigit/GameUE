@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Frame/NetWork/TcpClient.h"
 #include "Engine/GameInstance.h"
+#include "Frame/NetWork//LuaProto.h"
 #include "GameUEGameInstance.generated.h"
 
 /**
@@ -17,6 +18,10 @@ class GAMEUE_API UGameUEGameInstance : public UGameInstance
 
 public:
 
+	virtual void Init() override;
+
+	virtual void Shutdown() override;
+
 	UFUNCTION(BlueprintCallable, Category = "GameUE")
 	UObject* GetSingletonObject(UClass* Class);
 
@@ -27,5 +32,6 @@ private:
 
 	TMap<FName, UObject*> SingletonObjectMap;
 
+	FLuaProto ProtoC;
 	//UTcpClient TcpClient;
 };

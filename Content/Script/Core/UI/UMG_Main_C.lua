@@ -57,8 +57,9 @@ function UMG_Main_C:OnClicked_ChatDetailSendButton()
 end
 
 function UMG_Main_C:SendMsgToServer(Message)
-    local TcpClient = self:GetTcpClient()
-    TcpClient:SocketSend(Message)
+    -- local TcpClient = self:GetTcpClient()
+    -- TcpClient:SocketSend(Message)
+    print(ProtoC.SendPack(tonumber(Message)))
 end
 
 function UMG_Main_C:GetGameUEInstance()
@@ -71,10 +72,10 @@ function UMG_Main_C:GetTcpClient()
 end
 
 function UMG_Main_C:InitTcpClient()
-    local TcpClient = self:GetTcpClient()
-    TcpClient:CreateSocket("127.0.0.1", 4399)
-    TcpClient:SocketSend("Init")
-    TcpClient:SocketReceive()
+    -- local TcpClient = self:GetTcpClient()
+    -- TcpClient:CreateSocket("127.0.0.1", 4399)
+    -- TcpClient:SocketSend("Init")
+    -- TcpClient:SocketReceive()
 end
 
 --function UMG_Main_C:Tick(MyGeometry, InDeltaTime)

@@ -15,7 +15,9 @@ public class GameUE : ModuleRules
             "InputCore",
 
             "Sockets",
-            "NetWorking"
+            "NetWorking",
+            "UnLua",
+            "Lua"
         });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

@@ -2,6 +2,18 @@
 
 
 #include "GameUEGameInstance.h"
+#include "Public/UnLua.h"
+
+void UGameUEGameInstance::Init()
+{
+	lua_State* L = UnLua::GetState();
+	ProtoC.Setup(L);
+}
+
+void UGameUEGameInstance::Shutdown()
+{
+
+}
 
 UObject* UGameUEGameInstance::GetSingletonObject(UClass* Class)
 {
