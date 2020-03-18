@@ -59,7 +59,7 @@ end
 function UMG_Main_C:SendMsgToServer(Message)
     -- local TcpClient = self:GetTcpClient()
     -- TcpClient:SocketSend(Message)
-    print(ProtoC.SendPack(tonumber(Message)))
+    print(ProtoC.SendPack(tonumber(Message), 1, 20, {a = 1}))
 end
 
 function UMG_Main_C:GetGameUEInstance()

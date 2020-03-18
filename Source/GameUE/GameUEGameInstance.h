@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Frame/NetWork/TcpClient.h"
 #include "Engine/GameInstance.h"
-#include "Frame/NetWork//LuaProto.h"
+#include "Frame/NetWork/LuaProto.h"
 #include "GameUEGameInstance.generated.h"
 
 /**

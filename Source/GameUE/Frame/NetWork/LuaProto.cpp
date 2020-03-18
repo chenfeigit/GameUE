@@ -1,16 +1,16 @@
 
 #include "LuaProto.h"
-#include "Private/LuaCore.h"
+#include "Public/UnLuaBase.h"
 
 bool FLuaProto::SendPack_Impl(int32 Remote, int32 ProtoId, int32 Size, uint8* Data)
 {
-
+	TcpSender.SocketSend("Hello from LuaProto");
+	return true;
 }
 
 FLuaProto *FLuaProto::Instance(nullptr);
 
-//ProtoC.SendPack(remote, id, buf, size)
-//SendPack(int32 ProtoId, int32 Size, userdata Buffer)
+//SendPack(int32 Remote, int32 ProtoId, int32 Size, userdata Buffer)
 int FLuaProto::SendPack(lua_State* L)
 {
 	if (!Instance) 
@@ -21,7 +21,7 @@ int FLuaProto::SendPack(lua_State* L)
 	}
 
 	int NumParams = lua_gettop(L);
-	if (NumParams != 2 || NumParams != 4) 
+	if (NumParams != 2 && NumParams != 4) 
 	{
 		UE_LOG(LogUnLua, Warning, TEXT("%s: Invalid parameters!"), ANSI_TO_TCHAR(__FUNCTION__));
 		lua_pushnil(L);
@@ -35,7 +35,7 @@ int FLuaProto::SendPack(lua_State* L)
 	if (NumParams == 4)
 	{
 		Size = lua_tointeger(L, 3);
-		void *UserData = GetUserdataFast(L, 4);
+		void *UserData = UnLua::GetPointer(L, 4);
 		Buffer = (uint8 *)UserData;
 	}
 
@@ -58,10 +58,6 @@ static luaL_Reg LuaProtoMethods[] = {
 
 //int FLuaProto::GetTypeName(lua_State* L)
 //{
-//
-//}
-//
-//void FLuaProto::CreateTable(lua_State* L, luaL_Reg* FuncMapArray)
 //{
 //
 //}
@@ -77,17 +73,16 @@ void FLuaProto::Setup(lua_State* L)
 		lua_rawset(L, -3);
 	}
 	lua_setglobal(L, "ProtoC");
+
+	TcpSender.CreateSocket("127.0.0.1", 4399);
+	TcpSender.SocketReceive();
 }
 //
 //void FLuaProto::CleanUp()
 //{
 //
 //}
-//void FLuaProto::SendPack_Impl(int32 Remote, int32 Proto, int32 Size, uint8* Data)
-//{
-//
-//}
-//
+
 //void FLuaProto::ReceivePack(int32 Proto, uint8* Data, int32 Size)
 //{
 //
