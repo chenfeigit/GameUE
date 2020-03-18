@@ -1,21 +1,54 @@
 
 #include "LuaProto.h"
+#include "Private/LuaCore.h"
+
+bool FLuaProto::SendPack_Impl(int32 Remote, int32 ProtoId, int32 Size, uint8* Data)
+{
+
+}
 
 FLuaProto *FLuaProto::Instance(nullptr);
 
+//ProtoC.SendPack(remote, id, buf, size)
+//SendPack(int32 ProtoId, int32 Size, userdata Buffer)
 int FLuaProto::SendPack(lua_State* L)
 {
-	if (Instance != nullptr)
+	if (!Instance) 
 	{
-		int d = lua_tonumber(L, 1);
-		lua_pushnumber(L, d + 1);
+		UE_LOG(LogUnLua, Warning, TEXT("LuaProto not instantiated!"));
+		lua_pushnil(L);
 		return 1;
+	}
+
+	int NumParams = lua_gettop(L);
+	if (NumParams != 2 || NumParams != 4) 
+	{
+		UE_LOG(LogUnLua, Warning, TEXT("%s: Invalid parameters!"), ANSI_TO_TCHAR(__FUNCTION__));
+		lua_pushnil(L);
+		return 1;
+	}
+
+	int32 Remote = lua_tointeger(L, 1);
+	int32 ProtoId = lua_tointeger(L, 2);;
+	int32 Size = 0;
+	uint8* Buffer = nullptr;
+	if (NumParams == 4)
+	{
+		Size = lua_tointeger(L, 3);
+		void *UserData = GetUserdataFast(L, 4);
+		Buffer = (uint8 *)UserData;
+	}
+
+	bool Result = Instance->SendPack_Impl(Remote, ProtoId, Size, Buffer);
+	if (!Result)
+	{
+		lua_pushnil(L);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("LuaProto instance is null."));
-		return 1;
+		lua_pushinteger(L, 1);
 	}
+	return 1;
 }
 
 static luaL_Reg LuaProtoMethods[] = {

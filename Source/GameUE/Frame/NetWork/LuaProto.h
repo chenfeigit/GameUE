@@ -18,10 +18,10 @@ public:
 	 * Send pack to server.
 	 * ------------------------------------------------------------
 	 * @LuaCallableFunction
-	 * SendPack(int ProtoId, userdata Buffer, int32 Size)
+	 * SendPack(int32 ProtoId, int32 Size, userdata Buffer)
 	 * @param ProtoId	
-	 * @param Buffer	
-	 * @param Size		
+	 * @param Size
+	 * @param Buffer
 	 * @return			
 	 * ------------------------------------------------------------
 	 */
@@ -48,7 +48,7 @@ public:
 
 private:
 
-	//void SendPack_Impl(int32 Remote, int32 Proto, int32 Size, uint8* Data);
+	bool SendPack_Impl(int32 Remote, int32 ProtoId, int32 Size, uint8* Data);
 
 	//void ReceivePack(int32 Proto, uint8* Data, int32 Size);
 
