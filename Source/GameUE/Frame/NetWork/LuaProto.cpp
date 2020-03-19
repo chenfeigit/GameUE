@@ -28,15 +28,14 @@ int FLuaProto::SendPack(lua_State* L)
 		return 1;
 	}
 
-	int32 Remote = lua_tointeger(L, 1);
-	int32 ProtoId = lua_tointeger(L, 2);;
+	int32 Remote = UnLua::Get(L, 1, UnLua::TType<int32>());
+	int32 ProtoId = UnLua::Get(L, 2, UnLua::TType<int32>());
 	int32 Size = 0;
 	uint8* Buffer = nullptr;
 	if (NumParams == 4)
 	{
-		Size = lua_tointeger(L, 3);
-		void *UserData = UnLua::GetPointer(L, 4);
-		Buffer = (uint8 *)UserData;
+		Size = UnLua::Get(L, 3, UnLua::TType<int32>());
+		Buffer = UnLua::Get(L, 4, UnLua::TType<uint8*>());
 	}
 
 	bool Result = Instance->SendPack_Impl(Remote, ProtoId, Size, Buffer);
@@ -46,7 +45,7 @@ int FLuaProto::SendPack(lua_State* L)
 	}
 	else
 	{
-		lua_pushinteger(L, 1);
+		UnLua::Push(L, 1);
 	}
 	return 1;
 }
@@ -76,6 +75,10 @@ void FLuaProto::Setup(lua_State* L)
 
 	TcpSender.CreateSocket("127.0.0.1", 4399);
 	TcpSender.SocketReceive();
+}
+void FLuaProto::CleanUp()
+{
+	//TcpSender.ThreadEnd();
 }
 //
 //void FLuaProto::CleanUp()

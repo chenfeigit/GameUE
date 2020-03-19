@@ -45,7 +45,7 @@ public:
 
 	void Setup(lua_State* L);
 
-	//void CleanUp();
+	void CleanUp();
 
 private:
 

@@ -38,11 +38,13 @@ public:
 			int32 Read = 0;
 			ClientSocket->Recv(ReceiveData.GetData(), ReceiveData.Num(), Read);
 
-			const FString ReceivedUE4String = FString(ANSI_TO_TCHAR(reinterpret_cast<const char*>(ReceiveData.GetData())));
+			if (Read > 0)
+			{
+				const FString ReceivedUE4String = FString(ANSI_TO_TCHAR(reinterpret_cast<const char*>(ReceiveData.GetData())));
 
-			FString log = "Server:" + ReceivedUE4String;
-			UE_LOG(LogTemp, Warning, TEXT("*** %s"), *log);
-
+				FString log = "Server:" + ReceivedUE4String;
+				UE_LOG(LogTemp, Warning, TEXT("*** %s"), *log);
+			}
 			FPlatformProcess::Sleep(0.01f);
 		}
 

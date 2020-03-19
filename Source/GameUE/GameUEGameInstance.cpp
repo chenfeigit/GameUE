@@ -12,7 +12,7 @@ void UGameUEGameInstance::Init()
 
 void UGameUEGameInstance::Shutdown()
 {
-
+	ProtoC.CleanUp();
 }
 
 UObject* UGameUEGameInstance::GetSingletonObject(UClass* Class)
