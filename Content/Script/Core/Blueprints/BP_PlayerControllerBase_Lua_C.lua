@@ -16,6 +16,10 @@ local BP_PlayerControllerBase_Lua_C = Class()
 --function BP_PlayerControllerBase_Lua_C:UserConstructionScript()
 --end
 
+function BP_PlayerControllerBase_Lua_C:AddYawInput(value)
+    print(value)
+end
+
 function BP_PlayerControllerBase_Lua_C:ReceiveBeginPlay()
 end
 

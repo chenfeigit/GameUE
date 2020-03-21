@@ -3,8 +3,8 @@
 #include "Public/UnLuaBase.h"
 
 bool FLuaProto::SendPack_Impl(int32 Remote, int32 ProtoId, int32 Size, uint8* Data)
-{
-	TcpSender.SocketSend("Hello from LuaProto");
+{/*
+	TcpSender.SocketSend("Hello from LuaProto");*/
 	return true;
 }
 
@@ -73,9 +73,20 @@ void FLuaProto::Setup(lua_State* L)
 	}
 	lua_setglobal(L, "ProtoC");
 
-	TcpSender.CreateSocket("127.0.0.1", 4399);
-	TcpSender.SocketReceive();
+	//TcpSender.CreateSocket("127.0.0.1", 4399);
+	//TcpSender.SocketReceive();
 }
+
+void FLuaProto::SetupTcpTransport()
+{
+
+	//TSharedPtr<FInternetAddr> InternetAddress = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM)->CreateInternetAddr();
+	//InternetAddress->SetIp(IPAddress.Value);
+	//InternetAddress->SetPort(PortNumber);
+	//FIPv4Endpoint EndPoint("d", 4399);
+	//TcpTransport = new FTcpMessageTransport()
+}
+
 void FLuaProto::CleanUp()
 {
 	//TcpSender.ThreadEnd();

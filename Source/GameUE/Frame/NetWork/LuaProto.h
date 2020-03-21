@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Public/UnLua.h"
 #include "Frame/NetWork/TcpSender.h"
+#include "TcpMessaging/Private/Transport/TcpMessageTransport.h"
 
 //
 //DECLARE_DYNAMIC_DELEGATE_FourParams(Sender, int32, int32, int32m uint8*);
@@ -57,6 +58,10 @@ private:
 
 	static FLuaProto* Instance;
 
-	FTcpSender TcpSender;
+	//FRunnableThread* TcpSenderThread;
+
+	//FTcpMessageTransport* TcpTransport;
+
+	void SetupTcpTransport();
 
 };

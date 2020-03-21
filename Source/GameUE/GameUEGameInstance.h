@@ -33,5 +33,6 @@ private:
 	TMap<FName, UObject*> SingletonObjectMap;
 
 	FLuaProto ProtoC;
+
 	//UTcpClient TcpClient;
 };

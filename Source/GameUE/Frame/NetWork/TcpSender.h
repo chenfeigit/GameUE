@@ -9,10 +9,14 @@
 /**
  *
  */
-class GAMEUE_API FTcpSender
+class GAMEUE_API FTcpSender : public FRunnable 
 {
 
 public:
+
+	FTcpSender() {}
+
+	~FTcpSender() { bStopped = true; }
 
 	/* Create Socket and connect to server. */
 	bool CreateSocket(FString IPString, int32 PortNumber);
@@ -27,7 +31,17 @@ public:
 
 	FString StringFromBinaryArray(TArray<uint8> BinaryArray);
 
+	virtual bool Init() override;
+
+	virtual uint32 Run() override;
+
+	virtual void Stop() override;
+
 private:
+
+	bool bStopped;
+
+	FThreadSafeCounter StopTaskCounter;
 
 	FSocket *ClientSocket;
 

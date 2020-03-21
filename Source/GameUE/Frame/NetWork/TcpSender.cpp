@@ -66,3 +66,18 @@ FString FTcpSender::StringFromBinaryArray(TArray<uint8> BinaryArray)
 {
 	return FString(ANSI_TO_TCHAR(reinterpret_cast<const char*>(BinaryArray.GetData())));
 }
+
+bool FTcpSender::Init()
+{
+	bStopped = false;
+	return true;
+}
+
+uint32 FTcpSender::Run()
+{
+	return uint32();
+}
+
+void FTcpSender::Stop()
+{
+}

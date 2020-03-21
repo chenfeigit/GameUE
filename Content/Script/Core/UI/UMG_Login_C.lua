@@ -11,7 +11,7 @@ local BlueprintEnum = require "Core.Enum.BlueprintEnum"
 
 local UMG_Login_C = Class()
 
-UMG_Login_C.FirstIn = false
+UMG_Login_C.FirstInto = false
 
 function UMG_Login_C:Initialize(Initializer)
     print("UMG_Login_C:Initialize()")
@@ -23,7 +23,7 @@ end
 
 function UMG_Login_C:Construct()
     print("UMG_Login_C:Construct")
-    self.FirstIn = true
+    self.FirstInto = true
     self.Button_Login.OnClicked:Add(self, UMG_Login_C.OnClicked_Button_Login)
     -- self:PlayAnimation(self.Foreground_Login)
 end
@@ -35,10 +35,9 @@ function UMG_Login_C:OnClicked_Button_Login()
 end
 
 function UMG_Login_C:Tick(MyGeometry, InDeltaTime)
-    print("Why")
-    if self.FirstIn then
+    if self.FirstInto then
         self:PlayAnimation(self.ForegroundHidden)
-        self.FirstIn = false
+        self.FirstInto = false
     end
 end
 

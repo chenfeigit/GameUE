@@ -16,6 +16,7 @@ public class GameUE : ModuleRules
 
             "Sockets",
             "NetWorking",
+            "TcpMessaging",
             "UnLua",
             "Lua"
         });

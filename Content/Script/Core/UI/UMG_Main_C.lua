@@ -28,15 +28,17 @@ end
 
 function UMG_Main_C:OnClicked_ChatMsgButton()
     print("Open Chat Detail UI")
-    self.ChatMsgCanvas:SetVisibility(UE4.ESlateVisibility.Hidden)
-    self.ChatDetailCanvas:SetVisibility(UE4.ESlateVisibility.Visible)
-    self.ChatEmptyButton:SetVisibility(UE4.ESlateVisibility.Visible)
+    self:PlayAnimation(self.OpenChatDetail)
+    -- self.ChatMsgCanvas:SetVisibility(UE4.ESlateVisibility.Hidden)
+    -- self.ChatDetailCanvas:SetVisibility(UE4.ESlateVisibility.Visible)
+    -- self.ChatEmptyButton:SetVisibility(UE4.ESlateVisibility.Visible)
 end
 
 function UMG_Main_C:OnClicked_ChatEmptyButton()
-    self.ChatDetailCanvas:SetVisibility(UE4.ESlateVisibility.Hidden)
-    self.ChatEmptyButton:SetVisibility(UE4.ESlateVisibility.Hidden)
-    self.ChatMsgCanvas:SetVisibility(UE4.ESlateVisibility.Visible)
+    self:PlayAnimation(self.CloseChatDetail)
+    -- self.ChatDetailCanvas:SetVisibility(UE4.ESlateVisibility.Hidden)
+    -- self.ChatEmptyButton:SetVisibility(UE4.ESlateVisibility.Hidden)
+    -- self.ChatMsgCanvas:SetVisibility(UE4.ESlateVisibility.Visible)
 end
 
 function UMG_Main_C:OnClicked_ChatDetailSendButton()
